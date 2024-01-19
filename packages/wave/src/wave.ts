@@ -1,20 +1,32 @@
-type Attributes = { [key: string]: string | boolean };
+export type Attributes = { [key: string]: string | boolean };
 type ChildCallback = ((element: HTMLElementProxy) => void) | string | string[];
 
 interface HTMLElementProxy {
-  [key: string]: (attributes: Attributes, child?: ChildCallback) => string;
+  [key: string]: {
+    (attributes: Attributes, child?: ChildCallback): string;
+    (text?: string): string;
+  };
 }
 
-const createElement = (
+const createElement = <T extends Attributes = Attributes>(
   tag: string,
-  attributes: Attributes,
+  attributesOrText?: T | string,
   child?: ChildCallback,
 ): string => {
-  const attrs = Object.entries(attributes)
-    .map(([key, value]) =>
-      typeof value === "boolean" && value ? key : `${key}="${value}"`,
-    )
-    .join(" ");
+  let attributes: T | undefined;
+  if (typeof attributesOrText === "string") {
+    child = attributesOrText;
+  } else {
+    attributes = attributesOrText;
+  }
+
+  const attrs =
+    attributes &&
+    Object.entries(attributes)
+      .map(([key, value]) =>
+        typeof value === "boolean" && value ? key : `${key}="${value}"`,
+      )
+      .join(" ");
 
   let content = "";
   if (typeof child === "function") {
@@ -24,7 +36,7 @@ const createElement = (
       {
         get:
           (_, childTag) =>
-          (childAttributes: Attributes, grandChild?: ChildCallback) => {
+          (childAttributes?: Attributes, grandChild?: ChildCallback) => {
             childElements.push(
               createElement(childTag as string, childAttributes, grandChild),
             );
@@ -40,13 +52,18 @@ const createElement = (
     content = child.join("");
   }
 
-  return `<${tag} ${attrs}>${content}</${tag}>`;
+  return `<${tag}${attrs ? " " + attrs : ""}>${content}</${tag}>`;
 };
 
-export const wave: HTMLElementProxy = new Proxy(
-  {},
-  {
-    get: (_, tag) => (attributes: Attributes, child?: ChildCallback) =>
-      createElement(tag as string, attributes, child),
-  },
-);
+export const buildWave = <
+  T extends Attributes = Attributes,
+>(): HTMLElementProxy =>
+  new Proxy(
+    {},
+    {
+      get: (_, tag) => (attributesOrText?: T | string, child?: ChildCallback) =>
+        createElement<T>(tag as string, attributesOrText, child),
+    },
+  );
+
+export const wave: HTMLElementProxy = buildWave<Attributes>();

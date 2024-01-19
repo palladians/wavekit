@@ -5,6 +5,16 @@ import { wave } from "./wave";
 const sanitize = (template: TemplateStringsArray) =>
   dedent(template).replace(/\s\s+/g, "").replace(/\n/, "");
 
+it("renders a template without attributes", () => {
+  const component = wave.div();
+  expect(component).toEqual("<div></div>");
+});
+
+it("renders a template without attributes", () => {
+  const component = wave.div("Test");
+  expect(component).toEqual("<div>Test</div>");
+});
+
 it("renders a template without nesting", () => {
   const component = wave.div({ class: "flex" });
   expect(component).toEqual('<div class="flex"></div>');
@@ -36,6 +46,25 @@ it("renders a template with multiple nested component", () => {
       <div class="flex">
         <div class="flex">Wave 1</div>
         <div class="flex">Wave 2</div>
+      </div>
+    `,
+  );
+});
+
+it("renders a template with multiple nested component as a loop result", () => {
+  const output = wave.div({ class: "flex" }, (div) => {
+    for (let i = 0; i < 5; i++) {
+      div.p("Test");
+    }
+  });
+  expect(output).toEqual(
+    sanitize`
+      <div class="flex">
+        <p>Test</p>
+        <p>Test</p>
+        <p>Test</p>
+        <p>Test</p>
+        <p>Test</p>
       </div>
     `,
   );
