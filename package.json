@@ -1,15 +1,12 @@
 {
-  "name": "yate",
-  "module": "index.ts",
-  "type": "module",
-  "scripts": {
-    "start": "bun index.ts"
-  },
+  "name": "wavekit",
+  "private": true,
+  "workspaces": ["packages/*", "apps/*"],
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.3.3"
   },
   "dependencies": {}
 }

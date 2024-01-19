@@ -1,0 +1,13 @@
+{
+  "name": "@wavekit/example",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "@wavekit/wave": "workspace:*",
+    "@wavekit/kit": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.0.0"
+  }
+}

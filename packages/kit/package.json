@@ -1,0 +1,24 @@
+{
+  "name": "@wavekit/kit",
+  "type": "module",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "files": ["dist"],
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "build": "bun run build:types && bun run build:code",
+    "build:code": "bun build src/index.ts --outdir ./dist",
+    "build:types": "tsc --emitDeclarationOnly",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "hono": "^3.12"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "hono": "^3.12.6"
+  }
+}
