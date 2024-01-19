@@ -4,6 +4,9 @@
   "module": "dist/index.js",
   "main": "dist/index.js",
   "files": ["dist"],
+  "bin": {
+    "inject": "./dist/inject.js"
+  },
   "scripts": {
     "dev": "bun run --hot src/index.ts",
     "build": "bun run build:types && bun run build:code",
@@ -19,6 +22,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@wavekit/wave": "workspace:*",
     "hono": "^3.12.6"
   }
 }

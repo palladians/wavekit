@@ -1,13 +1,17 @@
 {
   "name": "@wavekit/example",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot .wavekit/index.ts",
+    "build": "tsup-node",
+    "start": "bun build/.wavekit/index.js"
   },
   "dependencies": {
     "@wavekit/wave": "workspace:*",
     "@wavekit/kit": "workspace:*"
   },
   "devDependencies": {
-    "@types/bun": "^1.0.0"
+    "@tsconfig/bun": "^1.0.1",
+    "@types/bun": "^1.0.0",
+    "tsup": "^8.0.1"
   }
 }

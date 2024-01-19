@@ -1,7 +1,7 @@
 export type Attributes = { [key: string]: string | boolean };
 type ChildCallback = ((element: HTMLElementProxy) => void) | string | string[];
 
-interface HTMLElementProxy {
+export interface HTMLElementProxy {
   [key: string]: {
     (attributes: Attributes, child?: ChildCallback): string;
     (text?: string): string;

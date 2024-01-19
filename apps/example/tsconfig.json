@@ -1,8 +1,7 @@
 {
+  "extends": "@tsconfig/bun/tsconfig.json",
+  "include": ["app/**/*"],
   "compilerOptions": {
-    "esModuleInterop": true,
-    "strict": true,
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+    "outDir": "build"
   }
 }
