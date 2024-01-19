@@ -10,7 +10,7 @@ it("renders a template without attributes", () => {
   expect(component).toEqual("<div></div>");
 });
 
-it("renders a template without attributes", () => {
+it("renders a template without attributes, but with inner text", () => {
   const component = wave.div("Test");
   expect(component).toEqual("<div>Test</div>");
 });
@@ -66,6 +66,19 @@ it("renders a template with multiple nested component as a loop result", () => {
         <p>Test</p>
         <p>Test</p>
       </div>
+    `,
+  );
+});
+
+it("allows nesting with just function", () => {
+  const output = wave.body((body) => {
+    body.button({ type: "submit" }, "Submit");
+  });
+  expect(output).toEqual(
+    sanitize`
+      <body>
+        <button type="submit">Submit</button>
+      </body>
     `,
   );
 });
