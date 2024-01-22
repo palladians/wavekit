@@ -1,0 +1,15 @@
+{
+  "name": "@wavekit/docs",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vocs dev",
+    "build": "vocs build",
+    "preview": "vocs preview"
+  },
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "vocs": "latest"
+  }
+}

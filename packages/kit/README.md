@@ -1,15 +1,3 @@
-# kit
+# @wavekit/kit
 
-To install dependencies:
-
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.0.23. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+The Hono-based custom web server to serve your wavy experience.

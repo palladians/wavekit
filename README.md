@@ -1,15 +1,14 @@
-# yate
+# Wavekit
 
-To install dependencies:
+Humanly dehanced web apps. The monorepo of every module for Wavekit.
 
-```bash
-bun install
-```
-
-To run:
+## Development
 
 ```bash
-bun run index.ts
+bun i
 ```
 
-This project was created using `bun init` in bun v1.0.23. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+### Modules
+
+- `@wavekit/wave` - The dead simple templating engine. Less than 100 lines of code. Zero additional deps.
+- `@wavekit/kit` - The actual `kit`. A web server based on Hono to build web apps with `wave`.

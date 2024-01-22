@@ -4,7 +4,7 @@ type ChildCallback = ((element: HTMLElementProxy) => void) | string | string[];
 export interface HTMLElementProxy {
   [key: string]: {
     (attributes: Attributes, child?: ChildCallback): string;
-    (child: ChildCallback): string; // Overload for just a ChildCallback
+    (child: ChildCallback): string;
     (text?: string): string;
   };
 }
